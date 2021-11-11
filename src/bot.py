@@ -4,8 +4,9 @@ import random
 import discord
 from PIL import Image
 import PIL
+import asyncio
 from io import BytesIO
-from test import get_anime_list, get_anime_image
+from malfunc import get_anime_list, get_anime_image, refreshtimer
 
 
 from discord.ext import commands
@@ -14,6 +15,8 @@ from dotenv import load_dotenv
 
 
 def main():
+    loop = asyncio.get_event_loop()
+    loop.create_task(refreshtimer())
     print("Fukuro-Sama is online!")
     bot.run(TOKEN)
 

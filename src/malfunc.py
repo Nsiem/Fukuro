@@ -4,6 +4,7 @@ import asyncio
 import json
 from PIL import Image
 from io import BytesIO
+from refreshtoken import refresh
 
 with open('token.json') as t:
     tokens = json.load(t)
@@ -44,6 +45,10 @@ async def get_anime_image(url: str):
             anime_img = Image.open(BytesIO(await resp.read()))
             return anime_img
 
+async def refreshtimer():
+    while True:
+        refresh()
+        await asyncio.sleep(1800)
 
 if __name__ == '__main__':
     asyncio.run(main())

@@ -12,6 +12,7 @@ with open('token.json') as t:
 
 REFRESH_TOKEN = tokens['refresh_token']
 
+# Simple function to refresh tokens in token.json for uninterupted use
 def refresh():
     global CLIENT_ID, CLIENT_SECRET
 
@@ -29,13 +30,10 @@ def refresh():
     token = response.json()
     response.close()
 
-    timecreated = int(time.time())
-    token["timecreated"] = timecreated
-
     with open('token.json', 'w') as file:
         json.dump(token, file, indent = 4)
 
-    return
+    return token
 
 
 if __name__ == '__main__':

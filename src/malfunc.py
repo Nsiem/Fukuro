@@ -40,13 +40,6 @@ async def get_anime_list(searchQuery: str, customurl: str):
     session.close
     return anime_list
 
-# retrieves Image file from https link
-async def get_anime_image(url: str):
-    async with aiohttp.ClientSession(headers=header) as session:
-        async with session.get(url) as resp:
-            anime_img = Image.open(BytesIO(await resp.read()))
-            return anime_img
-
 # retrieves specific anime info based on ID passed in
 async def get_anime_info(aniID: str):
     url = f'https://api.myanimelist.net/v2/anime/{aniID}?fields=title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,media_type,status,genres,start_season,broadcast,source'
@@ -54,6 +47,26 @@ async def get_anime_info(aniID: str):
         async with session.get(url) as resp:
             anime_info = await resp.json()
             return anime_info
+
+
+# Retrieves manga list based on text search, returns json with up to 5 results at a time
+async def get_manga_list(searchQuery: str, customurl: str):
+    url = f'https://api.myanimelist.net/v2/manga?q={searchQuery}&limit=5'
+    async with aiohttp.ClientSession(headers=header) as session:
+        if (customurl != NULL):
+            url = customurl
+        async with session.get(url) as resp:
+            manga_list = await resp.json()
+    session.close
+    return manga_list
+
+# retrieves specific manga info based on ID passed in
+async def get_manga_info(mangaID: str):
+    url = f'https://api.myanimelist.net/v2/manga/{mangaID}?fields=title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,status,genres'
+    async with aiohttp.ClientSession(headers=header) as session:
+        async with session.get(url) as resp:
+            manga_info = await resp.json()
+            return manga_info
 
 # asyncio loop that call refresh() after set delay
 # async def refreshtimer():

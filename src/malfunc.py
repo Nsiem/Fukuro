@@ -12,22 +12,6 @@ with open('token.json') as t:
 ACCESS_TOKEN = tokens['access_token']
 
 header = {"Authorization": f'Bearer {ACCESS_TOKEN}'}
-
-# TESTER FUNCTION FOR TESTING ANIME SEARCHES OUTSIDE OF BOT
-async def main():
-    searchrequest = input("Please enter the title you wish to search: " )
-    anime_img = await get_anime_image('https://api-cdn.myanimelist.net/images/anime/1412/107914.jpg')
-    anime_img.show()
-    # anime_list = await get_anime_list(searchrequest, NULL)
-    # print(anime_list['data'])
-    # while(1):
-    #     nextsearchflag = input("Please enter 1 to see next page or 2 if you found what you are looking for: ")
-    #     if(nextsearchflag == '2'):
-    #         break
-    #     else:
-    #         print(anime_list['paging']['next'])
-    #         anime_list = await get_anime_list(NULL, anime_list['paging']['next'])
-    #         print(anime_list['data'])
     
 # Retrieves anime list based on text search, returns json with up to 5 results at a time
 async def get_anime_list(searchQuery: str, customurl: str):
@@ -76,7 +60,3 @@ async def get_manga_info(mangaID: str):
 #         global header
 #         header = {"Authorization": f'Bearer {access_token}'}
 #         await asyncio.sleep(3500)
-
-# start of file if main test function to be used
-if __name__ == '__main__':
-    asyncio.run(main())

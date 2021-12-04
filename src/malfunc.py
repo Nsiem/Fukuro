@@ -32,6 +32,14 @@ async def get_anime_info(aniID: str):
             anime_info = await resp.json()
             return anime_info
 
+# retrieves only title, status and broadcast info of anime based on ID passed in
+async def get_anime_sql_info(aniID: str):
+    url = f'https://api.myanimelist.net/v2/anime/{aniID}?fields=title,status,broadcast'
+    async with aiohttp.ClientSession(headers=header) as session:
+        async with session.get(url) as resp:
+            anime_info = await resp.json()
+            return anime_info
+
 
 # Retrieves manga list based on text search, returns json with up to 5 results at a time
 async def get_manga_list(searchQuery: str, customurl: str):

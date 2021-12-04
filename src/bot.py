@@ -7,21 +7,22 @@ from discord import colour
 from discord.embeds import Embed, EmptyEmbed
 from discord.ext.commands.errors import ExpectedClosingQuoteError
 from malfunc import *
+from remindersql import *
 from discord.ext import commands
 from dotenv import load_dotenv
-
-
-# Main start of program, begins asyncio loop to refresh token regardless of access every set amount of time
-def main():
-    # loop = asyncio.get_event_loop()
-    # loop.create_task(refreshtimer())
-    print("Fukuro-Sama is online!")
-    bot.run(TOKEN)
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='f!')
+
+# Main start of program, begins asyncio loop to refresh token regardless of access every set amount of time
+def main():
+    # loop = asyncio.get_event_loop()
+    # loop.create_task(refreshtimer())
+    # ADD ANOTHER EVENT LOOP THAT RUNS EVERY 6 HOURS TO CALL REMINDER FUNCTIONS
+    print("Fukuro-Sama is online!")
+    bot.run(TOKEN)
 
 # generates string containing the anime/manga titles from text search, to be put in embed
 def jsontitles(Alist):
@@ -166,6 +167,43 @@ async def searchmanga(ctx, *, search_query: str):
             errormsg = discord.Embed(title = "Time ran out for search, please try again", colour = discord.Colour.dark_red())
             await message.edit(embed=errormsg)
             break
+
+
+# Adds user to database of reminders, where the user will be reminded of an anime's new ep release
+@bot.command(name="add-reminder")
+async def add_reminder(ctx, *, search_query: str):
+    aniquery = search_query.replace(" ", "%20")
+    anime_list = await get_anime_list(aniquery, NULL)
+    animetitles = jsontitles(anime_list)
+    animeresults = discord.Embed(title = "Did you mean?...", colour = discord.Colour.blue())
+    animeresults.add_field(name = "Anime:", value = animetitles)
+    animeresults.set_footer(text="Please type the number of the anime that you want to be reminded about")
+
+    message = await ctx.send(embed=animeresults)
+    # KEEP BUILDING THIS OUT!!!!
+
+
+
+
+
+
+
+
+# @bot.command(name="test")
+# async def searchmanga(ctx):
+#     theID = ctx.author.id
+#     print(theID)
+#     user = await bot.fetch_user(theID)
+#     print(user.display_name)
+
+@bot.command(name="test")
+async def searchmanga(ctx):
+    result = get_anime_table()
+    print(result)
+
+@bot.command(name="test1")
+async def searchmanga(ctx):
+    add_test()
 
 #start of program
 if (__name__ == '__main__'):

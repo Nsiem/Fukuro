@@ -143,6 +143,10 @@ def manga_info_embed(Minfo):
 
 @bot.command()
 async def help(ctx):
+    log = f"{datetime.now()}::('{ctx.author.name}#{ctx.author.discriminator}', userID = {ctx.author.id}) in guild:('{ctx.guild}', guildID = {ctx.guild.id}, channel:'{ctx.message.channel.name}') requested; 'f^help'\n"
+    with open("LOG.txt", "a") as file:
+        file.write(log)
+
     em = discord.Embed(title="Command List", description = "**prefix = f^**", colour = discord.Colour.dark_orange())
     em.set_thumbnail(url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
     em.set_footer(text="Thank you for using Fukuro!")
@@ -155,6 +159,10 @@ async def help(ctx):
 # Bot command to begin search of information on select anime, and completes with either timeout, or anime info
 @bot.command(name="animeinfo")
 async def searchanime(ctx, *, search_query: str):
+    log = f"{datetime.now()}::('{ctx.author.name}#{ctx.author.discriminator}', userID = {ctx.author.id}) in guild:('{ctx.guild}', guildID = {ctx.guild.id}, channel:'{ctx.message.channel.name}') requested; 'f^animeinfo {search_query}'\n"
+    with open("LOG.txt", "a") as file:
+        file.write(log)
+
     aniquery = search_query.replace(" ", "%20")
     anime_list = await get_anime_list(aniquery, NULL)
     animetitles = jsontitles(anime_list)
@@ -202,6 +210,10 @@ async def searchanime(ctx, *, search_query: str):
 
 @bot.command(name="mangainfo")
 async def searchmanga(ctx, *, search_query: str):
+    log = f"{datetime.now()}::('{ctx.author.name}#{ctx.author.discriminator}', userID = {ctx.author.id}) in guild:('{ctx.guild}', guildID = {ctx.guild.id}, channel:'{ctx.message.channel.name}') requested; 'f^mangainfo {search_query}'\n"
+    with open("LOG.txt", "a") as file:
+        file.write(log)
+
     mangaquery = search_query.replace(" ", "%20")
     manga_list = await get_manga_list(mangaquery, NULL)
     mangatitles = jsontitles(manga_list)
@@ -251,6 +263,10 @@ async def searchmanga(ctx, *, search_query: str):
 # Adds user to database of reminders, where the user will be reminded of an anime's new ep release
 @bot.command(name="add-reminder")
 async def add_reminder(ctx, *, search_query: str):
+    log = f"{datetime.now()}::('{ctx.author.name}#{ctx.author.discriminator}', userID = {ctx.author.id}) in guild:('{ctx.guild}', guildID = {ctx.guild.id}, channel:'{ctx.message.channel.name}') requested; 'f^add-reminder {search_query}'\n"
+    with open("LOG.txt", "a") as file:
+        file.write(log)
+
     aniquery = search_query.replace(" ", "%20")
     anime_list = await get_anime_list(aniquery, NULL)
     animetitles = jsontitles(anime_list)
@@ -332,6 +348,9 @@ async def add_reminder(ctx, *, search_query: str):
 # removes user from database of reminders
 @bot.command(name="remove-reminder")
 async def remove_reminder(ctx):
+    log = f"{datetime.now()}::('{ctx.author.name}#{ctx.author.discriminator}', userID = {ctx.author.id}) in guild:('{ctx.guild}', guildID = {ctx.guild.id}, channel:'{ctx.message.channel.name}') requested; 'f^remove-reminder'\n"
+    with open("LOG.txt", "a") as file:
+        file.write(log)
 
     userID = ctx.author.id
 

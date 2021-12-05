@@ -33,7 +33,7 @@ async def get_anime_info(aniID: str):
             return anime_info
 
 # retrieves only title, status and broadcast info of anime based on ID passed in
-async def get_anime_sql_info(aniID: str):
+async def get_anime_sql_info(aniID):
     url = f'https://api.myanimelist.net/v2/anime/{aniID}?fields=title,status,broadcast'
     async with aiohttp.ClientSession(headers=header) as session:
         async with session.get(url) as resp:
@@ -61,10 +61,10 @@ async def get_manga_info(mangaID: str):
             return manga_info
 
 # asyncio loop that call refresh() after set delay
-# async def refreshtimer():
-#     while True:
-#         newtoken = refresh()
-#         access_token = newtoken['access_token']
-#         global header
-#         header = {"Authorization": f'Bearer {access_token}'}
-#         await asyncio.sleep(3500)
+async def refreshtimer():
+    while True:
+        newtoken = refresh()
+        access_token = newtoken['access_token']
+        global header
+        header = {"Authorization": f'Bearer {access_token}'}
+        await asyncio.sleep(3500)

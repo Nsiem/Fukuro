@@ -89,8 +89,8 @@ def user_table_add(userID: int, animeID: int):
 def anime_table_delete(animeID: int):
     try:
         db = cnx.cursor()
-        db.execute(f"""DELETE FROM anime_table WHERE ani_ID = {animeID}
-        DELETE FROM user_table WHERE ani_ID = {animeID};""")
+        db.execute(f"DELETE FROM anime_table WHERE ani_ID = {animeID};")
+        db.execute(f"DELETE FROM user_table WHERE ani_ID = {animeID};")
         cnx.commit()
         return True
     except Exception as e:
@@ -111,13 +111,3 @@ def user_table_delete(userID: int, animeID: int):
         return False
     finally:
         db.close()
-
-
-if (__name__ == '__main__'):
-    db = cnx.cursor()
-    db.execute("""SELECT * FROM user_table;""")
-    result = db.fetchall()
-    print(result)
-    #cnx.commit()
-    db.close()
-    

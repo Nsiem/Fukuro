@@ -71,8 +71,8 @@ async def anime_reminders():
                     ani_info = await get_anime_sql_info(result[i][0])
                     remindermsg = discord.Embed(title = f"Hoot Hoot! New episode today for {result[i][1]}!", colour = discord.Colour.blue())
                     remindermsg.set_image(url=ani_info['main_picture']['large'])
-                    remindermsg.set_author(name='Fukuro', icon_url='https://i.postimg.cc/Y28MqWsg/sus.png')
-                    remindermsg.set_thumbnail(url='https://i.postimg.cc/Y28MqWsg/sus.png')
+                    remindermsg.set_author(name='Fukuro', icon_url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
+                    remindermsg.set_thumbnail(url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
                     remindermsg.set_footer(text="Episode release expected today unless outlying circumstances")
 
                     for h in range(len(users)):
@@ -97,8 +97,8 @@ def anime_info_embed(Ainfo):
     synopsis = Ainfo['synopsis'][:-24]
     result = discord.Embed(title = f"{Ainfo['title']}", description = synopsis, colour = discord.Colour.blue())
     result.set_image(url=Ainfo['main_picture']['large'])
-    result.set_author(name='Fukuro', icon_url='https://i.postimg.cc/Y28MqWsg/sus.png')
-    result.set_thumbnail(url='https://i.postimg.cc/Y28MqWsg/sus.png')
+    result.set_author(name='Fukuro', icon_url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
+    result.set_thumbnail(url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
     result.add_field(name='__Japanese Title:__', value=Ainfo['alternative_titles']['ja'])
     if (Ainfo['status'] != 'not_yet_aired'):
         try:
@@ -121,8 +121,8 @@ def manga_info_embed(Minfo):
     synopsis = Minfo['synopsis'][:-24]
     result = discord.Embed(title = f"{Minfo['title']}", description = synopsis, colour = discord.Colour.dark_red())
     result.set_image(url=Minfo['main_picture']['large'])
-    result.set_author(name='Fukuro', icon_url='https://i.postimg.cc/Y28MqWsg/sus.png')
-    result.set_thumbnail(url='https://i.postimg.cc/Y28MqWsg/sus.png')
+    result.set_author(name='Fukuro', icon_url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
+    result.set_thumbnail(url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
     result.add_field(name='__Japanese Title:__', value=Minfo['alternative_titles']['ja'])
     if (Minfo['status'] != 'not_yet_published'):
         try:
@@ -144,7 +144,7 @@ def manga_info_embed(Minfo):
 @bot.command()
 async def help(ctx):
     em = discord.Embed(title="Command List", description = "**prefix = f^**", colour = discord.Colour.dark_orange())
-    em.set_thumbnail(url='https://i.postimg.cc/Y28MqWsg/sus.png')
+    em.set_thumbnail(url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
     em.set_footer(text="Thank you for using Fukuro!")
     em.add_field(name="animeinfo", value="Search for anime information, e.g 'f^animeinfo one piece'", inline=False)
     em.add_field(name="mangainfo", value="Search for manga information, e.g 'f^mangainfo one piece'", inline=False)
@@ -297,8 +297,8 @@ async def add_reminder(ctx, *, search_query: str):
                         user_table_add(user_ID, anime_info['id'])
                         successmsg = discord.Embed(title = f"{anime_info['title']} episode reminder added!", colour = discord.Colour.blue())
                         successmsg.set_image(url=anime_info['main_picture']['large'])
-                        successmsg.set_author(name='Fukuro', icon_url='https://i.postimg.cc/Y28MqWsg/sus.png')
-                        successmsg.set_thumbnail(url='https://i.postimg.cc/Y28MqWsg/sus.png')
+                        successmsg.set_author(name='Fukuro', icon_url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
+                        successmsg.set_thumbnail(url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
                         await message.edit(embed=successmsg)
                         await messagereply.delete()
                         break
@@ -313,8 +313,8 @@ async def add_reminder(ctx, *, search_query: str):
                             user_table_add(user_ID, anime_info['id'])
                             successmsg = discord.Embed(title = f"{anime_info['title']} episode reminder added!", colour = discord.Colour.blue())
                             successmsg.set_image(url=anime_info['main_picture']['large'])
-                            successmsg.set_author(name='Fukuro', icon_url='https://i.postimg.cc/Y28MqWsg/sus.png')
-                            successmsg.set_thumbnail(url='https://i.postimg.cc/Y28MqWsg/sus.png')
+                            successmsg.set_author(name='Fukuro', icon_url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
+                            successmsg.set_thumbnail(url='https://i.postimg.cc/RhM2kYLS/finalfukuro.png')
                             await message.edit(embed=successmsg)
                             await messagereply.delete()
                             break
